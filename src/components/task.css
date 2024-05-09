@@ -1,0 +1,45 @@
+.task{
+    position: relative;
+    padding: 12px 25px;
+    border: 1px solid black;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.task.active{
+    background-color: aqua;
+}
+.task .text{
+    max-width: 80%;
+    overflow: auto;
+}
+.task .text p.done{
+    text-decoration: line-through;
+}
+.task .buttons{
+    display: flex;
+    gap: .8rem;
+}
+.task .buttons button{
+    cursor: pointer;
+    font-size: 1.2rem;
+    background-color: transparent;
+    border: none;
+}
+.task .buttons button.done{
+    color: green;
+}
+.task .buttons button.trash{
+    color: red;
+}
+.task .star-button{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;    
+
+    position: absolute;
+    top: 2px;
+    left: 5px;
+}
