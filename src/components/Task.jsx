@@ -4,13 +4,17 @@ import star from "../assets/star.svg";
 import starFilled from "../assets/starFilled.svg";
 import "./task.css";
 
-export default function Task({ task }) {
+export default function Task({ task, setTaskDone }) {
   const [done, setDone] = useState(false);
   const [mouse, setMouse] = useState(false);
   const [imgSrc, setImgSrc] = useState(star);
   const [important, setImportant] = useState(false);
   const [todo, setTodo, importantTodo, setImportantTodo, sortBy, setSortBy] =
     useContext(Context);
+
+  useEffect(() => {
+    console.log(task);
+  }, [todo]);
 
   function handleClickFavourite() {
     if (!important) {
@@ -21,7 +25,7 @@ export default function Task({ task }) {
         setImgSrc(starFilled);
         setImportant(true);
         setImportantTodo((prev) => {
-          return [task, ...prev];
+          return [...prev, task];
         });
       }
     } else {
@@ -33,6 +37,10 @@ export default function Task({ task }) {
         return temp;
       });
     }
+  }
+
+  function handleClickDone() {
+    setTaskDone(task, setDone);
   }
 
   function handleClickDelete() {
@@ -59,14 +67,14 @@ export default function Task({ task }) {
         </button>
       )}
       <div className="text">
-        <p className={done ? "done" : undefined}>{task.task}</p>
+        <p className={task.done ? "done" : undefined}>{task.task}</p>
       </div>
       <div className="buttons">
         <button className="trash button" onClick={handleClickDelete}>
           {" "}
           &#128465;{" "}
         </button>
-        <button className="done button" onClick={() => setDone(!done)}>
+        <button className="done button" onClick={handleClickDone}>
           &#10004;
         </button>
       </div>

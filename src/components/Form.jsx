@@ -24,10 +24,16 @@ export default function Form() {
       setValid(false);
       setTodo((prev) => {
         return [
-          { id: crypto.randomUUID(), task: value, type: "default" },
+          {
+            id: crypto.randomUUID(),
+            task: value,
+            type: "default",
+            done: false,
+          },
           ...prev,
         ];
       });
+      setValue("");
     }
   }
 
@@ -36,7 +42,12 @@ export default function Form() {
       <label htmlFor="value" className={valid ? "not-valid-value" : "valid"}>
         You must enter a task
       </label>
-      <input type="text" onChange={handleChangeInput} id="value" />
+      <input
+        type="text"
+        onChange={handleChangeInput}
+        id="value"
+        value={value}
+      />
       <button>Enter</button>
       <select name="sort" id="sort" onChange={handleChangeSelect}>
         <option value="default">Default</option>
